@@ -1,0 +1,121 @@
+﻿@model HomeDetailsViewModel;
+@{
+    ViewBag.Title = "User List";
+    
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 myborder">                     
+               
+                <br />
+                <br />
+                <div class="card-deck">
+                    
+                    <form method="post" asp-action="login" asp-controller="home">
+                        <label style="color:black;" asp-for="UserName"></label>
+                        @if (Model != null && Model.UserName != null)
+                        {
+                            <input asp-for="UserName" />
+                        }
+                        else
+                        {
+                            <input asp-for="UserName" value="My User" />
+                        }
+
+                        <button type="submit" class=" btn btn-primary" style="width:auto;margin-left: 10px;">
+                            Login
+                        </button>
+                    </form>
+                </div>
+                <div class="card-deck">
+                    <form method="post" asp-action="add" asp-controller="home">
+                        <label style="color:black;" asp-for="TaskTitle"></label>
+                        <input asp-for="TaskTitle" value="Task Title" />
+                        <input asp-for="DueDate" value="Due Date" />
+                        <button type="submit" class=" btn btn-primary" style="width:auto;margin-left: 10px;">
+                            Add
+                        </button>
+                        @*<button class="btn btn-primary">Add</button>*@
+                    </form>
+                </div>
+                <br />
+                <div class="form-group ">
+                    <div class="container">
+                        <div class="row">
+                           
+                            <div class="column" >
+                                <div>
+                                    <span>Done</span>
+                                </div>
+                                <div class="show_task">
+                                    @if (Model != null && Model.GetDoneTasks != null )
+                                    {
+                                    <ul>
+                                        @foreach (var task in Model.GetDoneTasks)
+                                        {
+                                            var fullTask = $"{task.Title}";
+                                            <li>@fullTask</li>
+                                        }
+                                    </ul>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </div>
+                            </div>
+                            
+                            <div class="column">
+                                <div>
+                                    <span>Late</span>
+                                </div>
+                                <div class="show_task">
+                                    @if (Model != null && Model.GetLateTasks != null)
+                                    {
+                                        <ul>
+                                            @foreach (var task in Model.GetLateTasks)
+                                            {
+                                                var fullTask = $"{task.Title} - {task.DueDate}";
+                                                <li>@fullTask</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </div>
+                               
+                            </div>
+                           
+                            <div class="column">
+                                <div>
+                                    <span>On Time</span>
+                                </div>
+                                <div class="show_task">
+                                    @if (Model != null && Model.GetOnTimeTasks != null)
+                                    {
+                                        <ul>
+                                            @foreach (var task in Model.GetOnTimeTasks)
+                                            {
+                                                var fullTask = $"{task.Title} - {task.DueDate}";
+                                                <li>@fullTask</li>
+                                            }
+                                        </ul>
+                                    }
+                                    else
+                                    {
+
+                                    }
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+        </div>
+      
+    </div>
+</div>

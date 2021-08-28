@@ -1,0 +1,26 @@
+﻿.btn {
+    width:75px;
+}
+* {
+    box-sizing: border-box;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.show_task {
+    background-color: white;
+    border: solid;
+    height: auto;
+    width: auto;
+}
